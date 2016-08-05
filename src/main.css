@@ -1,0 +1,29 @@
+body {
+  width: 100vw;
+  min-width: 320px;
+  overflow-x: hidden;
+  color: #19191B;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+h1 {
+  line-height: 52px;
+  font-size: 32px;
+}
+
+h1 a {
+  text-decoration: none;
+}
+
+h1 a:visited,
+h1 a:hover {
+  color: #19191B;
+}
+
+a:visited h1,
+a:hover h1 {
+  color: #19191B;
+}

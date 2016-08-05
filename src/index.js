@@ -5,6 +5,7 @@ const find = require('array-find')
 const css = require('sheetify')
 
 css('normalize.css')
+css('./main.css', {global: true})
 
 const model = JSON.parse(
   fs.readFileSync(__dirname + '/model.json', 'utf8')
@@ -15,18 +16,70 @@ const nav = require('./views/nav')
 const modulePage = require('./views/module-page')
 
 const prefix = css`
+  .wrapper {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
   nav {
     position: fixed;
+    max-width: 240px;
     top: 0px;
-    bottom: 0px;
-    left: 0px;
-    width: 332px;
+    left: 30px;
+    max-height: 100%;
+    border-radius: 4px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
+    background: #FDFDFD;
+    margin-top: 0px;
+    width: 100%;
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+
+  nav > ul.categories {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  nav ul.modules {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  nav ul.modules li a {
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 300;
   }
 
   article {
-    margin-left: 332px;
+    float: right;
+    clear: both;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1180px) {
+    article {
+      max-width: 600px;
+      margin-right: 60px;
+    }
+   }
+
+  article pre {
+    margin: 1.5em 0;
+    overflow-x: auto;
+  }
+
+  article pre > code {
+    overflow-x: auto;
+    white-space: inherit;
+    padding: 1em 1.5em;
   }
 `
 
@@ -64,8 +117,10 @@ const app = {
 
     return inu.html`
       <main class=${prefix}>
-        ${nav(model)}
-        ${modulePage(module)}
+        <div class='wrapper'>
+          ${nav(model)}
+          ${modulePage(module)}
+        </div>
       </main>
     `
   },
